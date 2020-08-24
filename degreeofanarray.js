@@ -10,28 +10,28 @@ let nums = [1, 2, 2, 3, 1]
 //with the highest frequency
 
 let map = {}
-    let firstIndexes = {}
-    let lastIndexes = {}
-    let result = Infinity
-    
-    for (let i = 0; i < nums.length; i++) {
-        if (map[nums[i]] == undefined) {
-            map[nums[i]] = 1
-        } else {
-            map[nums[i]]++
-        }
-        
-        if (firstIndexes[nums[i]] == undefined) {
-            firstIndexes[nums[i]] = i
-        }
-        lastIndexes[nums[i]] = i
+let firstIndexes = {}
+let lastIndexes = {}
+let result = Infinity
+
+for (let i = 0; i < nums.length; i++) {
+    if (map[nums[i]] == undefined) {
+        map[nums[i]] = 1
+    } else {
+        map[nums[i]]++
     }
-    
-    let max = Math.max(...Object.values(map))
-    for (let key in map) {
-        if (map[key] == max) {
-            result = Math.min(result, lastIndexes[key] - firstIndexes[key] + 1)
-        }
+
+    if (firstIndexes[nums[i]] == undefined) {
+        firstIndexes[nums[i]] = i
     }
-    
-    return result
+    lastIndexes[nums[i]] = i
+}
+
+let max = Math.max(...Object.values(map))
+for (let key in map) {
+    if (map[key] == max) {
+        result = Math.min(result, lastIndexes[key] - firstIndexes[key] + 1)
+    }
+}
+
+return result
